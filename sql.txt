@@ -1,0 +1,172 @@
+CREATE TABLE tbl_nguoidung (
+    id_nguoidung INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(100),
+    password VARCHAR(255),
+    hoten VARCHAR(100),
+    bidanh VARCHAR(100),
+    dienthoai VARCHAR(20),
+    cmnd VARCHAR(20),
+    diachi VARCHAR(255),
+    ngayvaolam DATE
+);
+
+CREATE TABLE tbl_phanquyen (
+    id_phanquyen INT PRIMARY KEY AUTO_INCREMENT,
+    ten_quyen VARCHAR(50),
+    id_nguoidung INT,
+    FOREIGN KEY (id_nguoidung) REFERENCES tbl_nguoidung(id_nguoidung)
+);
+
+CREATE TABLE tbl_danhmuc (
+    id_danhmuc INT PRIMARY KEY AUTO_INCREMENT,
+    ten_danhmuc VARCHAR(100),
+    hinhanh VARCHAR(255),
+    id_nguoidung INT,
+    FOREIGN KEY (id_nguoidung) REFERENCES tbl_nguoidung(id_nguoidung)
+);
+
+CREATE TABLE tbl_bantin (
+    id_bantin INT PRIMARY KEY AUTO_INCREMENT,
+    id_danhmuc INT,
+    tieude VARCHAR(255),
+    hinhanh VARCHAR(255),
+    noidung TEXT,
+    tukhoa VARCHAR(255),
+    nguontin VARCHAR(255),
+    `like` INT,
+    rating FLOAT,
+    FOREIGN KEY (id_danhmuc) REFERENCES tbl_danhmuc(id_danhmuc)
+);
+
+CREATE TABLE tbl_dangbai (
+    id_vietbai INT PRIMARY KEY AUTO_INCREMENT,
+    id_bantin INT,
+    id_nguoidung INT,
+    thoigian DATETIME,
+    tinhtrang VARCHAR(50),
+    ghichu TEXT,
+    FOREIGN KEY (id_bantin) REFERENCES tbl_bantin(id_bantin),
+    FOREIGN KEY (id_nguoidung) REFERENCES tbl_nguoidung(id_nguoidung)
+);
+
+CREATE TABLE tbl_docgia (
+    id_docgia INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(100),
+    password VARCHAR(255),
+    hoten VARCHAR(100),
+    ghichu TEXT
+);
+
+CREATE TABLE tbl_binhluan (
+    id_binhluan INT PRIMARY KEY AUTO_INCREMENT,
+    tieude VARCHAR(255),
+    noidung TEXT,
+    `like` INT,
+    thoigian DATETIME,
+    id_bantin INT,
+    id_docgia INT,
+    FOREIGN KEY (id_bantin) REFERENCES tbl_bantin(id_bantin),
+    FOREIGN KEY (id_docgia) REFERENCES tbl_docgia(id_docgia)
+);
+
+
+
+
+
+
+
+
+INSERT INTO tbl_nguoidung (id_nguoidung, email, password, hoten, bidanh, dienthoai, cmnd, diachi, ngayvaolam) VALUES
+(1, 'admin@gmail.com', '123456', 'Nguyễn Văn A', 'AdminA', '0123456789', '123456789', 'Hà Nội', '2023-01-01'),
+(2, 'user1@gmail.com', '123456', 'Lê Thị B', 'UserB', '0987654321', '987654321', 'TP.HCM', '2023-03-10');
+
+INSERT INTO tbl_phanquyen (id_phanquyen, ten_quyen, id_nguoidung) VALUES
+(1, 'Admin', 1),
+(2, 'Biên tập', 2);
+
+INSERT INTO tbl_danhmuc (id_danhmuc, ten_danhmuc, hinhanh, id_nguoidung) VALUES
+(1, 'Công nghệ', 'congnghe.jpg', 1),
+(2, 'Giáo dục', 'giaoduc.jpg', 1),
+(3, 'Đời sống', 'doisong.jpg', 2);
+
+INSERT INTO tbl_bantin (id_bantin, id_danhmuc, tieude, hinhanh, noidung, tukhoa, nguontin, `like`, rating) VALUES
+(1, 1, 'AI đang thay đổi thế giới', 'ai.jpg', 'Bài viết về AI', 'AI, công nghệ', 'VNExpress', 20, 4.5),
+(2, 1, 'Liệu Samsung sẽ thành công với Galaxy S4 hay sẽ rơi vào tình trạng suy giảm sự tin cậy của nhà đầu tư như Apple', 'samsung.jpg', 'Chi tiết phân tích...', 'Samsung, Galaxy S4', 'Zing News', 15, 4.2),
+(3, 2, 'Sự thay đổi cách thức mua sắm của khách hàng trong thời kì thương mại điện tử', 'ecom.jpg', 'Bài viết về hành vi tiêu dùng', 'mua sắm, thương mại', 'VNExpress', 12, 4.0),
+(4, 3, 'Thoái trào tất yếu của Apple trước cạnh tranh trên thị trường smartphone và chữ rớt khỏi ngôi nghêch', 'apple.jpg', 'Phân tích Apple', 'Apple, smartphone', 'VnReview', 10, 3.8);
+
+INSERT INTO tbl_dangbai (id_vietbai, id_bantin, id_nguoidung, thoigian, tinhtrang, ghichu) VALUES
+(1, 1, 1, '2024-01-01 10:00:00', 'Đã đăng', ''),
+(2, 2, 2, '2024-01-02 12:00:00', 'Đã đăng', ''),
+(3, 3, 1, '2024-01-03 09:30:00', 'Đã đăng', ''),
+(4, 4, 2, '2024-01-04 14:00:00', 'Đã đăng', '');
+
+INSERT INTO tbl_docgia (id_docgia, email, password, hoten, ghichu) VALUES
+(1, 'docgia1@gmail.com', 'pass1', 'Trần Văn C', ''),
+(2, 'docgia2@gmail.com', 'pass2', 'Phạm Thị D', '');
+
+INSERT INTO tbl_binhluan (id_binhluan, tieude, noidung, `like`, thoigian, id_bantin, id_docgia) VALUES
+(1, 'Bài viết rất hay', 'Tôi rất thích cách phân tích về AI', 5, '2024-02-01 08:00:00', 1, 1),
+(2, 'Không đồng tình', 'Tôi nghĩ Apple vẫn còn mạnh', 3, '2024-02-02 09:00:00', 4, 2),
+(3, 'Bình thường thôi', 'Thông tin không mới lắm', 1, '2024-02-03 10:00:00', 3, 1);
+
+
+
+
+
+
+
+
+--a
+SELECT * 
+FROM tbl_bantin 
+ORDER BY `like` DESC 
+LIMIT 10;
+
+--b
+SELECT * 
+FROM tbl_bantin 
+WHERE tieude LIKE '%công nghệ%';
+
+--c
+SELECT b.* 
+FROM tbl_bantin b
+JOIN tbl_danhmuc d ON b.id_danhmuc = d.id_danhmuc
+WHERE d.ten_danhmuc IN ('Giáo dục', 'Đời sống');
+
+--d
+SELECT bl.*
+FROM tbl_binhluan bl
+JOIN tbl_bantin bt ON bl.id_bantin = bt.id_bantin
+WHERE bt.tieude = 'Sự thay đổi cách thức mua sắm của khách hàng trong thời kì thương mại điện tử';
+
+--e
+SELECT dg.*
+FROM tbl_docgia dg
+JOIN tbl_binhluan bl ON dg.id_docgia = bl.id_docgia
+JOIN tbl_bantin bt ON bl.id_bantin = bt.id_bantin
+WHERE bt.tieude = 'Thoái trào tất yếu của Apple trước cạnh tranh trên thị trường smartphone và chữ rớt khỏi ngôi nghêch';
+
+--f
+SELECT id_bantin, `like`
+FROM tbl_bantin;
+
+--g
+INSERT INTO tbl_bantin (id_danhmuc, tieude, hinhanh, noidung, tukhoa, nguontin, `like`, rating)
+VALUES (1, 'Bản tin mới về AI', 'ai.jpg', 'Nội dung bản tin AI', 'AI, công nghệ', 'VNExpress', 0, 0);
+
+--h
+INSERT INTO tbl_binhluan (tieude, noidung, `like`, thoigian, id_bantin, id_docgia)
+VALUES (
+    'Bình luận mới',
+    'Tôi nghĩ rằng Galaxy S4 sẽ có tiềm năng nhưng còn phụ thuộc vào thị trường.',
+    0,
+    NOW(),
+    2,
+    1
+);
+
+--i
+UPDATE tbl_bantin
+SET noidung = 'Nội dung mới được cập nhật'
+WHERE id_bantin = 123;
