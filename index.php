@@ -13,7 +13,7 @@
     <h2 class="my-4">Chọn Bảng để Hiển Thị</h2>
     <div class="btn-group">
         <button class="btn btn-primary m-1" onclick="loadTable('tbl_nguoidung')">Bảng Người Dùng</button>
-        <button class="btn btn-primary m-1" onclick="loadTable('tbl_bantin')">Bảng Sản Phẩm</button>
+        <button class="btn btn-primary m-1" onclick="loadTable('tbl_bantin')">Bảng Bản Tin</button>
         <button class="btn btn-primary m-1" onclick="loadTable('tbl_binhluan')">Bảng Bình Luận</button>
         <button class="btn btn-primary m-1" onclick="loadTable('tbl_dangbai')">Bảng Đăng Bài</button>
         <button class="btn btn-primary m-1" onclick="loadTable('tbl_danhmuc')">Bảng Danh Mục</button>
