@@ -6,7 +6,7 @@ taoKetNoi($link);
 
 if (isset($_GET['option']) && $_GET['option'] == 'c') {
     // Truy vấn C: Lấy bản tin thuộc danh mục Giáo dục hoặc Đời sống
-    $query = "SELECT tbl_bantin.* 
+    $query = "SELECT tbl_bantin.*,tbl_danhmuc.ten_danhmuc 
               FROM tbl_bantin
               JOIN tbl_danhmuc ON tbl_bantin.id_danhmuc = tbl_danhmuc.id_danhmuc
               WHERE tbl_danhmuc.ten_danhmuc IN ('Giáo dục', 'Đời sống')";
