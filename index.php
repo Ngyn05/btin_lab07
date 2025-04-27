@@ -24,8 +24,8 @@
     <div class="btn-group">
         <button class="btn btn-secondary m-1" onclick="">a</button>
         <button class="btn btn-secondary m-1" onclick="">b</button>
-        <button class="btn btn-secondary m-1" onclick="">c</button>
-        <button class="btn btn-secondary m-1" onclick="">d</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('c')">c</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('d')">d</button>
         <button class="btn btn-secondary m-1" onclick="">e</button>
         <button class="btn btn-secondary m-1" onclick="">f</button>
         <button class="btn btn-secondary m-1" onclick="">g</button>
@@ -44,6 +44,28 @@
             url: 'load_table.php',
             type: 'GET',
             data: { table: tableName },
+            success: function(data) {
+                $('#table-container').html(data);
+            },
+            error: function() {
+                alert("Có lỗi khi tải dữ liệu.");
+            }
+        });
+    }
+    function loadSpecial(option) {
+        // Thay đổi URL để gọi đúng file load_c.php và load_d.php
+        let url = '';
+
+        if (option == 'c') {
+            url = 'load_c.php';
+        } else if (option == 'd') {
+            url = 'load_d.php';
+        }
+
+        $.ajax({
+            url: url,  // Gọi file đúng theo option
+            type: 'GET',
+            data: { option: option },
             success: function(data) {
                 $('#table-container').html(data);
             },
