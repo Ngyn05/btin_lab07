@@ -22,8 +22,8 @@
     </div>
 
     <div class="btn-group">
-        <button class="btn btn-secondary m-1" onclick="">a</button>
-        <button class="btn btn-secondary m-1" onclick="">b</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('a')">a</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('b')">b</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('c')">c</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('d')">d</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('e')">e</button>
@@ -34,27 +34,41 @@
     </div>
     
     <div id="table-container" class="mt-5">
-
+        <!-- Kết quả sẽ được hiển thị ở đây -->
     </div>
 </div>
 
 
 <script>
+    // Hàm loadTable sẽ tải dữ liệu của bảng từ server
     function loadTable(tableName) {
         $.ajax({
             url: 'load_table.php',
             type: 'GET',
             data: { table: tableName },
             success: function(data) {
-                $('#table-container').html(data);
+                $('#table-container').html(data);  // Hiển thị dữ liệu vào trong phần #table-container
             },
             error: function() {
                 alert("Có lỗi khi tải dữ liệu.");
             }
         });
     }
+
+
+
     function loadSpecial(option) {
         let url = '';
+        if (option == 'a') {
+            url = 'load_a.php';}
+            else if (option == 'b') {
+            url = 'load_b.php';
+        }
+        if (option == 'c') {
+            url = 'load_c.php';}
+            else if (option == 'd') {
+            url = 'load_d.php';
+        }
         if (option == 'f') {
             url = 'load_f.php';}
             else if (option == 'e') {
