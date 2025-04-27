@@ -28,8 +28,8 @@
         <button class="btn btn-secondary m-1" onclick="loadSpecial('d')">d</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('e')">e</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('f')">f</button>
-        <button class="btn btn-secondary m-1" onclick="">g</button>
-        <button class="btn btn-secondary m-1" onclick="">h</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('g')">g</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('h')">h</button>
         <button class="btn btn-secondary m-1" onclick="">i</button>
     </div>
     
@@ -75,10 +75,10 @@
             url = 'load_e.php';
         }
 
-        if (option == 'c') {
-            url = 'load_c.php';}
-            else if (option == 'd') {
-            url = 'load_d.php';
+        if (option == 'g') {
+            url = 'load_g.php';}
+            else if (option == 'h') {
+            url = 'load_h.php';
         }
 
 
