@@ -22,14 +22,23 @@
     </div>
 
     <div class="btn-group">
-        <button class="btn btn-secondary m-1" onclick="loadOption('a')">a</button>
-        <button class="btn btn-secondary m-1" onclick="loadOption('b')">b</button>
+
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('a')">a</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('b')">b</button>
+        <button class="btn btn-secondary m-1" onclick="">c</button>
+        <button class="btn btn-secondary m-1" onclick="">d</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('e')">e</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('f')">f</button>
+        <button class="btn btn-secondary m-1" onclick="">g</button>
+        <button class="btn btn-secondary m-1" onclick="">h</button>
+        <button class="btn btn-secondary m-1" onclick="">i</button>
     </div>
     
     <div id="table-container" class="mt-5">
         <!-- Kết quả sẽ được hiển thị ở đây -->
     </div>
 </div>
+
 
 <script>
     // Hàm loadTable sẽ tải dữ liệu của bảng từ server
@@ -46,22 +55,32 @@
             }
         });
     }
-    
-    // Hàm loadOption sẽ tải dữ liệu của các tùy chọn từ server
-    function loadOption(option) {
+
+
+
+    function loadSpecial(option) {
+        let url = '';
+        if (option == 'f') {
+            url = 'load_f.php';}
+            else if (option == 'e') {
+            url = 'load_e.php';
+        }
+
+
+
         $.ajax({
-            url: 'load_' + option + '.php',  // Tải tệp tương ứng với option ('load_a.php', 'load_b.php', ...)
+            url: url,  // Gọi file đúng theo option
             type: 'GET',
             data: { option: option },
             success: function(data) {
-                $('#table-container').html(data);  // Hiển thị dữ liệu vào trong phần #table-container
+                $('#table-container').html(data);
             },
             error: function() {
                 alert("Có lỗi khi tải dữ liệu.");
             }
-        })
+        });
     }
+    
 </script>
-
 </body>
 </html>
