@@ -22,35 +22,44 @@
     </div>
 
     <div class="btn-group">
-        <button class="btn btn-secondary m-1" onclick="">a</button>
-        <button class="btn btn-secondary m-1" onclick="">b</button>
-        <button class="btn btn-secondary m-1" onclick="">c</button>
-        <button class="btn btn-secondary m-1" onclick="">d</button>
-        <button class="btn btn-secondary m-1" onclick="">e</button>
-        <button class="btn btn-secondary m-1" onclick="">f</button>
-        <button class="btn btn-secondary m-1" onclick="">g</button>
-        <button class="btn btn-secondary m-1" onclick="">h</button>
-        <button class="btn btn-secondary m-1" onclick="">i</button>
+        <button class="btn btn-secondary m-1" onclick="loadOption('a')">a</button>
+        <button class="btn btn-secondary m-1" onclick="loadOption('b')">b</button>
     </div>
     
     <div id="table-container" class="mt-5">
-
+        <!-- Kết quả sẽ được hiển thị ở đây -->
     </div>
 </div>
 
 <script>
+    // Hàm loadTable sẽ tải dữ liệu của bảng từ server
     function loadTable(tableName) {
         $.ajax({
             url: 'load_table.php',
             type: 'GET',
             data: { table: tableName },
             success: function(data) {
-                $('#table-container').html(data);
+                $('#table-container').html(data);  // Hiển thị dữ liệu vào trong phần #table-container
             },
             error: function() {
                 alert("Có lỗi khi tải dữ liệu.");
             }
         });
+    }
+    
+    // Hàm loadOption sẽ tải dữ liệu của các tùy chọn từ server
+    function loadOption(option) {
+        $.ajax({
+            url: 'load_' + option + '.php',  // Tải tệp tương ứng với option ('load_a.php', 'load_b.php', ...)
+            type: 'GET',
+            data: { option: option },
+            success: function(data) {
+                $('#table-container').html(data);  // Hiển thị dữ liệu vào trong phần #table-container
+            },
+            error: function() {
+                alert("Có lỗi khi tải dữ liệu.");
+            }
+        })
     }
 </script>
 
