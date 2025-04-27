@@ -22,7 +22,6 @@
     </div>
 
     <div class="btn-group">
-
         <button class="btn btn-secondary m-1" onclick="loadSpecial('a')">a</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('b')">b</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('c')">c</button>
@@ -74,6 +73,12 @@
             url = 'load_f.php';}
             else if (option == 'e') {
             url = 'load_e.php';
+        }
+
+        if (option == 'c') {
+            url = 'load_c.php';}
+            else if (option == 'd') {
+            url = 'load_d.php';
         }
 
 
