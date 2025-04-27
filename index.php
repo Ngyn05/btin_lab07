@@ -25,8 +25,8 @@
 
         <button class="btn btn-secondary m-1" onclick="loadSpecial('a')">a</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('b')">b</button>
-        <button class="btn btn-secondary m-1" onclick="">c</button>
-        <button class="btn btn-secondary m-1" onclick="">d</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('c')">c</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('d')">d</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('e')">e</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('f')">f</button>
         <button class="btn btn-secondary m-1" onclick="">g</button>
@@ -60,12 +60,21 @@
 
     function loadSpecial(option) {
         let url = '';
+        if (option == 'a') {
+            url = 'load_a.php';}
+            else if (option == 'b') {
+            url = 'load_b.php';
+        }
+        if (option == 'c') {
+            url = 'load_c.php';}
+            else if (option == 'd') {
+            url = 'load_d.php';
+        }
         if (option == 'f') {
             url = 'load_f.php';}
             else if (option == 'e') {
             url = 'load_e.php';
         }
-
 
 
         $.ajax({
