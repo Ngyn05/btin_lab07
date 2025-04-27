@@ -26,8 +26,8 @@
         <button class="btn btn-secondary m-1" onclick="">b</button>
         <button class="btn btn-secondary m-1" onclick="">c</button>
         <button class="btn btn-secondary m-1" onclick="">d</button>
-        <button class="btn btn-secondary m-1" onclick="">e</button>
-        <button class="btn btn-secondary m-1" onclick="">f</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('e')">e</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('f')">f</button>
         <button class="btn btn-secondary m-1" onclick="">g</button>
         <button class="btn btn-secondary m-1" onclick="">h</button>
         <button class="btn btn-secondary m-1" onclick="">i</button>
@@ -37,6 +37,7 @@
 
     </div>
 </div>
+
 
 <script>
     function loadTable(tableName) {
@@ -52,7 +53,28 @@
             }
         });
     }
-</script>
+    function loadSpecial(option) {
+        let url = '';
+        if (option == 'f') {
+            url = 'load_f.php';}
+            else if (option == 'e') {
+            url = 'load_e.php';
+        }
 
+
+        $.ajax({
+            url: url,  // Gọi file đúng theo option
+            type: 'GET',
+            data: { option: option },
+            success: function(data) {
+                $('#table-container').html(data);
+            },
+            error: function() {
+                alert("Có lỗi khi tải dữ liệu.");
+            }
+        });
+    }
+    
+</script>
 </body>
 </html>
