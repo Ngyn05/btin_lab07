@@ -30,7 +30,7 @@
         <button class="btn btn-secondary m-1" onclick="loadSpecial('f')">f</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('g')">g</button>
         <button class="btn btn-secondary m-1" onclick="loadSpecial('h')">h</button>
-        <button class="btn btn-secondary m-1" onclick="">i</button>
+        <button class="btn btn-secondary m-1" onclick="loadSpecial('i')">i</button>
     </div>
     
     <div id="table-container" class="mt-5">
@@ -59,28 +59,35 @@
 
     function loadSpecial(option) {
         let url = '';
-        if (option == 'a') {
-            url = 'load_a.php';}
-            else if (option == 'b') {
-            url = 'load_b.php';
+        switch (option) {
+            case 'a':
+                url = 'load_a.php';
+                break;
+            case 'b':
+                url = 'load_b.php';
+                break;
+            case 'c':
+                url = 'load_c.php';
+                break;
+            case 'd':
+                url = 'load_d.php';
+                break;
+            case 'e':
+                url = 'load_e.php';
+                break;
+            case 'f':
+                url = 'load_f.php';
+                break;
+            case 'g':
+                url = 'load_g.php';
+                break;
+            case 'h':
+                url = 'load_h.php';
+                break;
+            case 'i':
+                url = 'load_i.php';
+                break;
         }
-        if (option == 'c') {
-            url = 'load_c.php';}
-            else if (option == 'd') {
-            url = 'load_d.php';
-        }
-        if (option == 'f') {
-            url = 'load_f.php';}
-            else if (option == 'e') {
-            url = 'load_e.php';
-        }
-
-        if (option == 'g') {
-            url = 'load_g.php';}
-            else if (option == 'h') {
-            url = 'load_h.php';
-        }
-
 
         $.ajax({
             url: url,  // Gọi file đúng theo option

@@ -8,7 +8,6 @@ if (isset($_GET['option']) && $_GET['option'] == 'g') {
     $query = "
     INSERT INTO tbl_bantin (
         id_danhmuc,
-        id_bantin,
         tieude,
         hinhanh,        
         noidung,
@@ -16,10 +15,9 @@ if (isset($_GET['option']) && $_GET['option'] == 'g') {
         nguontin
     ) VALUES (
         (SELECT id_danhmuc FROM tbl_danhmuc WHERE ten_danhmuc = 'Công nghệ' LIMIT 1),
-        123,
         'Liệu Samsung sẽ thành công với Galaxy S4 hay sẽ rơi vào tình trạng suy giảm sự tin cậy của nhà đầu tư như Apple',
         'images/news/m4chip.jpg',
-        'Bản tiǹ thuộc danh mục công nghệ',
+        'Bản tin thuộc danh mục công nghệ',
         'Apple, đầu tư, công nghệ',
         'VnExpress'
     );
