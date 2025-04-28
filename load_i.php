@@ -5,15 +5,16 @@ $link = null;
 taoKetNoi($link);
 
 if (isset($_GET['option']) && $_GET['option'] == 'i') {
-    $query = "DELETE FROM tbl_bantin
-WHERE id_bantin = 123;";
+    $query = "UPDATE tbl_bantin
+    SET noidung = 'Nội dung mới được cập nhật'
+    WHERE id_bantin = 123";
 
     $result = chayTruyVanKhongTraVeDL($link, $query);
 
     if ($result) {
-        echo "<p>Xóa bản tin thành công.</p>";
+        echo "<p>Cập nhật nội dung bản tin thành công.</p>";
     } else {
-        echo "<p>Xóa bản tin thất bại.</p>";
+        echo "<p>Cập nhật nội dung bản tin thất bại.</p>";
     }
 
     giaiPhongBoNho($link, $result);
